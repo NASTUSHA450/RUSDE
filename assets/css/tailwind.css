@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Belcanto-Modern";
+    src: url("../fonts/Belcanto-Modern.ttf");
+}
+
+@layer base{
+    html,body{
+        font-family: "Monrope", sans-serif;
+        overflow-x: hidden;
+        font-weight: 200;
+    }
+    section#preview h1,h2, #package .card .price,.vs{
+        font-family: Belcanto-Modern,serif;
+    }
+    input[type='checkbox']:before{
+        position: absolute;
+        display: block;
+        width: 28px;
+        top:0;
+        left: 0;
+        height: 28px;
+        border-radius: 5px;
+        content: "";
+        background: #FFF;
+        border: 1px solid black;
+
+    }
+    input[type='checkbox']:after{
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 5px;
+        border: 1px solid black;
+        content: "";
+        background: #FFF;
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+    input[type='checkbox']:checked:after {
+        background-image: url('/images/icons/check.svg');
+    }
+    .number:before{
+        position: absolute;
+        display: block;
+        width: 16%;
+        top:0;
+        left: 0;
+        height: 100%;
+        border-radius: 12px;
+        content: "";
+        background-image: url("/images/icons/de-flag.svg");
+        background-repeat: no-repeat;
+        background-size: 24px 18px;
+        background-position: center;
+    }
+    .number:after{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 33%;
+        top:0;
+        left: 0;
+        height: 100%;
+        border-radius: 12px;
+        content: "+49";
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 2px;
+    }
+    .vertical-line{
+        background-image: linear-gradient(rgba(135, 132, 132, 0.68) 33%, rgba(133, 133, 133, 0) 0%);
+        background-position: right;
+        background-size: 2px 30px;
+        background-repeat: repeat-y;
+        height: 248px;
+        width: 50px
+
+    }
+}
+img{
+    @apply w-full
+}
+button{
+    @apply py-3 text-body-medium rounded-xl
+}
+.button-white{
+    @apply bg-white text-black
+}
+.button-black{
+    @apply text-white bg-black
+}
+.button-gray{
+    @apply text-black bg-black bg-opacity-5
+}
+.main-container{
+    @apply max-w-[120rem] px-[11.25rem]
+}
+section:not(#preview):not(#package):not(#fakeReal){
+    @apply grid grid-cols-12 gap-10 main-container py-20
+}
+section .section-text{
+    @apply col-span-6 grid grid-cols-6 [grid-template-rows:auto_auto_auto]
+}
+section .section-text .points{
+    @apply grid gap-y-4 mx-3
+}
+section .section-text .points .point{
+    @apply flex items-center gap-4
+}
+section .section-text .points .point img{
+    @apply w-7 h-7
+}
+h2, .vs{
+    @apply text-[6rem]/[6.75rem] text-nowrap
+}
+section h3{
+    @apply text-2xl/[34px]
+}
+section .section-images{
+    @apply col-span-5 col-start-8 grid grid-cols-5 grid-rows-8 gap-10
+}
+section .section-images.flip{
+    @apply col-start-1
+}
+section .section-text.flip{
+    @apply col-start-7
+}
+
+section#comfort{
+    @apply pt-2
+}
+
+/*texts*/
+.text-body-medium{
+    @apply text-lg/7
+}
+.text-body-large{
+    @apply text-2xl/[34px]
+}
+
+#header{
+    @apply fixed top-0 left-0 w-full flex items-center px-7 py-5 text-body-medium z-[9999]
+}
+#header .logo{
+    @apply w-[42px] h-[42px]
+}
+#header ul{
+    @apply flex gap-[62px] ms-[11.5vw]
+}
+#header .buttons{
+    @apply ms-auto flex gap-2
+}
+#header .buttons .lang{
+    @apply flex ps-3 pe-5 items-center
+}
+
+section#preview{
+    @apply main-container h-screen bg-main-preview bg-cover w-full text-white max-h-[63rem] pt-[14.2rem]
+}
+section#preview h1{
+    @apply text-[190px]/[180px]
+}
+section#preview p{
+    @apply text-body-medium pt-5 pb-10 tracking-wide
+}
+section#preview .arrow{
+    @apply absolute left-0 bottom-7 w-full flex justify-center
+}
+
+#formModal{
+    @apply fixed w-screen h-screen top-0 right-0 flex justify-end items-center z-50
+}
+
+.open-form-container{
+    @apply fixed h-full -right-28 top-0 flex items-center justify-end z-50
+}
+.open-form{
+    @apply transform -rotate-90 text-body-medium rounded-br-none rounded-bl-none py-5 px-20 relative -right-1
+}
+.formkit-input{
+    @apply w-full bg-black bg-opacity-5 px-5 py-3 rounded-xl text-body-medium
+}
+.number .formkit-input{
+    @apply ps-24 font-medium
+}
+
+.dialog {
+    @apply bg-transparent mx-auto;
+}
+
+.dialog .dialog-backdrop{
+    @apply fixed top-0 left-0 bg-black bg-opacity-50 w-screen h-screen
+}
+.dialog .dialog-content{
+    @apply relative rounded-3xl bg-white w-full h-full p-10 max-w-[31.25rem]
+}
+
+#package .card{
+    @apply border border-black border-opacity-5 rounded-3xl p-10
+}
+#package .card .best-choice{
+    @apply flex text-body-medium text-white rounded-lg bg-gradient-to-t from-black  to-[#525252] px-2 py-1 ms-5 mb-1.5 font-bold
+}
+#package .card .price{
+    @apply text-[40px]
+}
+#package .card .price span{
+    @apply text-[60px]
+}
+#footer {
+    @apply main-container pt-[7.7rem] bg-footer-bg bg-cover relative z-[1]
+}
+#footer .formkit-form{
+    @apply flex items-center gap-10 mt-8 relative pb-40
+}
+#footer .formkit-outer{
+    @apply m-0
+}
+#footer .formkit-input:not(.formkit-input[type="submit"]):not(.formkit-input[type="checkbox"]){
+    @apply bg-white bg-opacity-5 w-[360px]
+}
+#footer .formkit-outer[data-type='checkbox']{
+    @apply absolute top-[6.5rem] text-white left-0
+}
+#footer input[type='checkbox']:after,#footer input[type='checkbox']:before{
+    @apply -top-2
+}
+#footer .number:after{
+    @apply text-white w-36
+}
+#footer .number:before{
+    @apply w-16
+}
+
+#migration .card{
+    @apply w-fit bg-white shadow-md rounded-lg px-4 py-3 flex items-center transform
+}
+#migration .cards:nth-child(1) .card{
+    @apply rotate-[4deg]
+}
+#migration .cards:nth-child(2) .card{
+    @apply rotate-[-4deg] relative top-12
+}
+#migration .cards:nth-child(4) .card{
+    @apply rotate-[2deg] relative top-20
+}
+#migration .cards:nth-child(5) .card{
+    @apply rotate-[-2deg]
+}
+
