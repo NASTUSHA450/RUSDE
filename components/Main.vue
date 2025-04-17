@@ -1,7 +1,7 @@
 <template>
   <main>
     <div ref="offer"><Offer /></div>
-    <div ref="migration"><Migration /></div>
+    <div ref="migration" class="lg:block hidden"><Migration /></div>
     <div ref="special"><Special /></div>
     <div ref="comfort"><Comfort /></div>
     <div ref="active"><Active /></div>

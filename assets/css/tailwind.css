@@ -4,29 +4,27 @@
 
 @font-face {
     font-family: "Belcanto-Modern";
-    src: url("/RUSDE/assets/fonts/Belcanto-Modern.ttf");
+    src: url("../fonts/Belcanto-Modern.ttf");
 }
 
 @layer base{
     html,body{
-        font-family: "Monrope", sans-serif;
+        font-family: "Manrope", sans-serif;
         overflow-x: hidden;
-        font-weight: 200;
+        font-weight: 400;
     }
-    section#preview h1,h2, #package .card .price,.vs{
+    section#preview h1,h2, #package .card .price,.vs,#mobileMenu{
         font-family: Belcanto-Modern,serif;
     }
     input[type='checkbox']:before{
         position: absolute;
-        display: block;
-        width: 28px;
         top:0;
         left: 0;
-        height: 28px;
         border-radius: 5px;
         content: "";
         background: #FFF;
         border: 1px solid black;
+        cursor: pointer;
 
     }
     input[type='checkbox']:after{
@@ -34,18 +32,17 @@
         display: block;
         left: 0;
         top: 0;
-        width: 28px;
-        height: 28px;
         border-radius: 5px;
         border: 1px solid black;
         content: "";
         background: #FFF;
         background-repeat: no-repeat;
         background-position: center;
+        cursor: pointer;
 
     }
     input[type='checkbox']:checked:after {
-        background-image: url('/RUSDE/images/icons/check.svg');
+        background-image: url('/images/icons/check.svg');
     }
     .number:before{
         position: absolute;
@@ -56,7 +53,7 @@
         height: 100%;
         border-radius: 12px;
         content: "";
-        background-image: url("/RUSDE/images/icons/de-flag.svg");
+        background-image: url("/images/icons/de-flag.svg");
         background-repeat: no-repeat;
         background-size: 24px 18px;
         background-position: center;
@@ -67,17 +64,16 @@
         justify-content: center;
         align-items: center;
         width: 33%;
-        top:0;
+        top:-1px;
         left: 0;
         height: 100%;
         border-radius: 12px;
         content: "+49";
-        font-size: 18px;
         font-weight: 500;
         margin-top: 2px;
     }
     .vertical-line{
-        background-image: linear-gradient(rgba(135, 132, 132, 0.68) 33%, rgba(133, 133, 133, 0) 0%);
+        background-image: linear-gradient(rgba(230 , 230 , 230) 33%, rgba(230 , 230 , 230 , 0) 0%);
         background-position: right;
         background-size: 2px 30px;
         background-repeat: repeat-y;
@@ -85,164 +81,103 @@
         width: 50px
 
     }
+    .fade-out{
+        animation: fade-out 0.3s linear forwards;
+    }
+    .fade-in{
+        animation: fade-in 0.3s linear forwards;
+    }
+}
+input[type='checkbox']:before, input[type='checkbox']:after{
+    @apply w-5 h-5 sm:w-[22px] sm:h-[22px] xl:w-7 xl:h-7
 }
 img{
     @apply w-full
 }
+.bg-set{
+    @apply bg-cover bg-no-repeat bg-center
+}
 button{
     @apply py-3 text-body-medium rounded-xl
+
+}
+body::-webkit-scrollbar {
+    @apply hidden
+}
+.hide-scrollbar::-webkit-scrollbar {
+    @apply hidden
+}
+
+.white-text-hover{
+    @apply text-white hover:text-[#E6E6E6] focus:text-[#CCCCCC]
+}
+.black-text-hover{
+    @apply text-black hover:text-[#1A1A1A] focus:text-[#333333]
 }
 .button-white{
-    @apply bg-white text-black
+    @apply bg-white hover:bg-[#E6E6E6] focus:bg-[#CCCCCC] text-black
 }
 .button-black{
-    @apply text-white bg-black
+    @apply text-white bg-black hover:bg-[#1A1A1A] focus:bg-[#333333]
 }
 .button-gray{
-    @apply text-black bg-black bg-opacity-5
+    @apply text-black bg-[#F2F2F2] hover:bg-[#E6E6E6] focus:bg-[#D8D8D8]
 }
+
 .main-container{
-    @apply max-w-[120rem] px-[11.25rem]
+    @apply max-w-[120rem] px-4 sm:px-[3.75rem] 2xl:px-[11.25rem]
 }
-section:not(#preview):not(#package):not(#fakeReal){
-    @apply grid grid-cols-12 gap-10 main-container py-20
+section:not(#preview):not(#package):not(#fakeReal):not(#comfort){
+    @apply xl:grid grid-cols-12 gap-10 main-container pt-7 sm:py-14 xl:py-20
 }
-section .section-text{
-    @apply col-span-6 grid grid-cols-6 [grid-template-rows:auto_auto_auto]
+section#offer .section-text h2{
+    @apply col-span-6 row-span-1
 }
-section .section-text .points{
-    @apply grid gap-y-4 mx-3
+section#offer .section-text h2 span{
+    @apply ms-[15%] xxs:ms-[25%] sm:ms-[12%] xl:ms-[26%]
 }
-section .section-text .points .point{
-    @apply flex items-center gap-4
+section#offer .section-text p.description{
+    @apply text-body-medium col-span-6 sm:col-span-4 xl:col-span-5 row-span-1 row-start-2 pt-5 sm:pt-8 pb-5 sm:pb-7 xl:py-10 xl:pe-0 sm:pe-10
 }
-section .section-text .points .point img{
-    @apply w-7 h-7
+section#offer .section-text .points{
+    @apply text-body-medium col-span-6 sm:col-span-4 row-span-1 sm:col-start-3 row-start-3 xl:ms-0 sm:ms-11 m-0
 }
-h2, .vs{
-    @apply text-[6rem]/[6.75rem] text-nowrap
+section#offer .section-images{
+    @apply mt-5 sm:mt-7 xl:mt-12 relative h-[600px] sm:h-[35rem] xl:h-[48.75rem]
 }
-section h3{
-    @apply text-2xl/[34px]
+section#offer .section-images .offer-1{
+    @apply col-span-3 row-span-2 col-start-2 sm:col-start-4 xl:row-span-3 xl:col-start-3 row-start-4 sm:row-start-3 xl:row-start-1 bg-offer-2 bg-set
 }
-section .section-images{
-    @apply col-span-5 col-start-8 grid grid-cols-5 grid-rows-8 gap-10
+section#offer .section-images .offer-2{
+    @apply col-span-2 sm:col-span-3 row-span-2 col-start-3 sm:col-start-4 xl:row-span-3 xl:col-start-3 row-start-2 sm:row-start-5 xl:row-start-4 bg-offer-3 bg-set
 }
-section .section-images.flip{
-    @apply col-start-1
+section#offer .section-images .offer-3{
+    @apply col-span-2 sm:col-span-3 xl:col-span-2 row-span-3 sm:row-span-5 xl:row-span-6 col-start-1 row-start-1 xl:row-start-3 overflow-hidden
+    bg-offer-1 bg-set
 }
-section .section-text.flip{
-    @apply col-start-7
+section#offer .section-images .button{
+    @apply sm:col-start-4 xl:row-start-8 xl:col-start-3 xl:col-span-3 sm:row-start-1 row-start-6 sm:col-span-3 col-span-4 flex justify-end
 }
-
-section#comfort{
-    @apply pt-2
+section#offer .section-images button{
+    @apply button-gray px-8 xl:px-5 py-3 flex gap-2 text-nowrap items-center h-fit sm:w-fit w-full  justify-center text-sm font-medium xl:mt-3
 }
-
-/*texts*/
-.text-body-medium{
-    @apply text-lg/7
+#migration{
+    @apply main-container pb-[5.8rem] pt-16 xl:pt-20 xl:pb-[8.4rem]
 }
-.text-body-large{
-    @apply text-2xl/[34px]
+#migration .germany{
+    @apply h-[16.25rem] xl:h-[18.75rem]
 }
-
-#header{
-    @apply fixed top-0 left-0 w-full flex items-center px-7 py-5 text-body-medium z-[9999]
+#migration .plane-block{
+    @apply flex justify-center relative mt-48 mb-[8.6rem] xl:mb-[7.6rem]
 }
-#header .logo{
-    @apply w-[42px] h-[42px]
+#migration .plane-block .plane{
+    @apply  h-[13rem] xl:h-[16.5rem] w-auto relative z-10
 }
-#header ul{
-    @apply flex gap-[62px] ms-[11.5vw]
+#migration .plane-block .card-grid{
+    @apply grid grid-cols-2 absolute -top-24 xl:-top-16 gap-x-60 xl:gap-x-72 gap-y-12
 }
-#header .buttons{
-    @apply ms-auto flex gap-2
-}
-#header .buttons .lang{
-    @apply flex ps-3 pe-5 items-center
-}
-
-section#preview{
-    @apply main-container h-screen bg-main-preview bg-cover w-full text-white max-h-[63rem] pt-[14.2rem]
-}
-section#preview h1{
-    @apply text-[190px]/[180px]
-}
-section#preview p{
-    @apply text-body-medium pt-5 pb-10 tracking-wide
-}
-section#preview .arrow{
-    @apply absolute left-0 bottom-7 w-full flex justify-center
-}
-
-#formModal{
-    @apply fixed w-screen h-screen top-0 right-0 flex justify-end items-center z-50
-}
-
-.open-form-container{
-    @apply fixed h-full -right-28 top-0 flex items-center justify-end z-50
-}
-.open-form{
-    @apply transform -rotate-90 text-body-medium rounded-br-none rounded-bl-none py-5 px-20 relative -right-1
-}
-.formkit-input{
-    @apply w-full bg-black bg-opacity-5 px-5 py-3 rounded-xl text-body-medium
-}
-.number .formkit-input{
-    @apply ps-24 font-medium
-}
-
-.dialog {
-    @apply bg-transparent mx-auto;
-}
-
-.dialog .dialog-backdrop{
-    @apply fixed top-0 left-0 bg-black bg-opacity-50 w-screen h-screen
-}
-.dialog .dialog-content{
-    @apply relative rounded-3xl bg-white w-full h-full p-10 max-w-[31.25rem]
-}
-
-#package .card{
-    @apply border border-black border-opacity-5 rounded-3xl p-10
-}
-#package .card .best-choice{
-    @apply flex text-body-medium text-white rounded-lg bg-gradient-to-t from-black  to-[#525252] px-2 py-1 ms-5 mb-1.5 font-bold
-}
-#package .card .price{
-    @apply text-[40px]
-}
-#package .card .price span{
-    @apply text-[60px]
-}
-#footer {
-    @apply main-container pt-[7.7rem] bg-footer-bg bg-cover relative z-[1]
-}
-#footer .formkit-form{
-    @apply flex items-center gap-10 mt-8 relative pb-40
-}
-#footer .formkit-outer{
-    @apply m-0
-}
-#footer .formkit-input:not(.formkit-input[type="submit"]):not(.formkit-input[type="checkbox"]){
-    @apply bg-white bg-opacity-5 w-[360px]
-}
-#footer .formkit-outer[data-type='checkbox']{
-    @apply absolute top-[6.5rem] text-white left-0
-}
-#footer input[type='checkbox']:after,#footer input[type='checkbox']:before{
-    @apply -top-2
-}
-#footer .number:after{
-    @apply text-white w-36
-}
-#footer .number:before{
-    @apply w-16
-}
-
 #migration .card{
-    @apply w-fit bg-white shadow-md rounded-lg px-4 py-3 flex items-center transform
+    @apply w-fit bg-white shadow-md rounded-lg px-4 py-2 xl:py-3 flex items-center transform
 }
 #migration .cards:nth-child(1) .card{
     @apply rotate-[4deg]
@@ -256,4 +191,425 @@ section#preview .arrow{
 #migration .cards:nth-child(5) .card{
     @apply rotate-[-2deg]
 }
+#migration .russia{
+    @apply h-[17.5rem] xl:h-[20rem]
+}
+section#special{
+    @apply sm:pt-7 pt-5 !important
+}
+section#special .section-text h2{
+    @apply col-span-6 row-span-1
+}
+section#special .section-text p.description{
+    @apply text-body-medium col-span-6 sm:col-span-5 row-span-1 row-start-2 py-5 sm:py-7 xl:py-10 xl:pe-0 sm:pe-32
+}
+section#special .section-text .points{
+    @apply text-body-medium col-span-4 row-span-1 col-start-3 row-start-3 xl:ms-2 sm:ms-11 xl:pe-8 m-0
+}
+section#special .section-images{
+    @apply mt-5 sm:mt-7 xl:mt-[5.4rem] h-[600px] sm:h-[35rem] xl:h-[48.75rem] grid-rows-7 sm:grid-rows-6
+}
+section#special .section-images .special-1{
+    @apply row-start-3 xl:row-start-1 col-span-2 col-start-3 xl:col-start-1 row-span-3 sm:row-span-4 xl:row-span-5 bg-set bg-special-1
+}
+section#special .section-images .special-2{
+    @apply col-span-3 row-span-2 xl:row-span-3 sm:col-start-3 sm:row-start-1 xl:row-start-3 bg-set bg-special-2
+}
+section#special .section-images .special-3{
+    @apply col-span-2 sm:col-span-4 row-span-2 sm:row-span-3 xl:row-span-3 row-start-5 sm:row-start-4 xl:row-start-6 sm:col-start-5 xl:col-start-1 bg-set bg-special-3
+}
+section#special .section-images .button{
+    @apply sm:row-start-1 row-start-7 sm:col-span-2 col-span-4 sm:col-start-7 xl:col-start-3 xl:col-span-3 flex justify-end
+}
+section#special .section-images button{
+    @apply button-gray px-10 py-3 gap-2 flex items-center text-nowrap  w-full sm:w-fit h-fit  justify-center text-sm font-medium
+
+}
+section#comfort{
+    @apply flex flex-col-reverse xl:grid grid-cols-12 xl:gap-10 main-container xl:py-20 xl:max-h-none sm:pt-14 pt-3.5
+}
+section#comfort .section-images{
+    @apply h-[500px] sm:h-[35rem] xl:h-[43.75rem] relative xl:top-0 sm:-top-[6.3rem] sm:mt-0 mt-5
+}
+section#comfort .section-images .comfort-1{
+    @apply col-span-2 sm:col-span-3 xl:col-span-2 row-span-3 sm:row-span-5 xl:row-span-4 sm:col-start-4 xl:col-start-1 bg-comfort-1 bg-set
+}
+section#comfort .section-images .comfort-2{
+    @apply col-span-2 sm:col-span-3 row-span-2 xl:row-span-3 xl:col-start-3 row-start-3 sm:row-start-5  xl:row-start-2 bg-set bg-comfort-2 sm:col-start-1 col-start-3
+}
+section#comfort .section-images .comfort-3{
+    @apply col-span-3 xl:col-span-4 row-span-2 xl:row-span-4 xl:col-start-2 row-start-5 sm:row-start-3 bg-set bg-comfort-3
+}
+section#comfort .section-text{
+    @apply mt-2 xl:mt-[6.7rem]
+}
+section#comfort .section-text h2{
+    @apply col-span-6 row-span-1 text-end xl:max-h-[210px]
+}
+section#comfort .section-text p.description{
+    @apply text-body-medium col-span-5 row-span-1 row-start-2 xl:mt-0 mt-5 sm:mt-7 xl:pe-0 sm:pe-52
+}
+section#comfort .section-text button{
+    @apply row-start-3 button-gray px-6 xl:px-6 py-3 w-fit hidden sm:flex justify-between h-fit items-center text-nowrap mb-14 gap-2 xl:mt-0 mt-7 font-medium
+}
+section#active{
+    @apply xl:py-20 sm:pt-5 pt-14 pb-0 !important
+}
+section#active .section-text{
+    @apply xl:mt-16
+}
+section#active .section-text h2{
+    @apply col-span-6 row-span-1
+}
+section#active .section-text p.description{
+    @apply text-body-medium col-span-5 row-span-1 row-start-2 xl:col-start-1 col-start-3 xl:ms-0 sm:ms-11 xl:mt-0 mt-5 sm:mt-7
+}
+section#active .section-text p.description-one{
+    @apply text-body-medium col-span-7 sm:col-span-5 row-span-1 xl:col-start-2 row-start-3 pb-10 xl:pe-0 sm:pe-80 xl:mt-0 mt-5 sm:mt-7
+}
+section#active .section-images{
+    @apply h-[500px] sm:h-[35rem] xl:h-[43.75rem] relative xl:top-0 sm:-top-[12.1rem] -top-5
+}
+section#active .section-images .active-1{
+    @apply col-span-3 sm:col-span-4 row-span-2 sm:row-span-3 sm:col-start-5 xl:col-start-1 bg-active-1 bg-set
+}
+section#active .section-images .active-2{
+    @apply xl:col-start-1 col-start-3 sm:col-start-7 col-span-2 row-span-3 sm:row-span-5 row-start-4 bg-active-2 bg-set
+}
+section#active .section-images .active-3{
+    @apply col-span-2 sm:col-span-4 xl:col-span-3 row-span-2 sm:row-span-5 xl:row-span-3 sm:col-start-3 xl:row-start-6 row-start-3 sm:row-start-4 bg-set bg-active-3 xl:col-start-3
+}
+
+section#safe{
+    @apply xl:grid flex flex-col-reverse xl:py-20 sm:pt-0 pt-9 pb-0 relative xl:top-0 sm:-top-[4.7rem] gap-0 xl:gap-10 !important
+}
+section#safe .section-images {
+    @apply bottom-1.5
+}
+section#safe .section-text{
+    @apply  xl:mt-[8rem]
+}
+section#safe .section-text h2{
+    @apply col-span-6 row-span-1 text-end xl:max-h-[190px]
+}
+section#safe .section-text p.description{
+    @apply text-body-medium col-span-6 sm:col-span-4 xl:col-span-5 row-span-1 row-start-2 xl:pe-0 sm:pe-12 xl:mt-0 mt-5 sm:mt-7
+}
+section#safe .section-text button{
+    @apply row-start-3 button-gray px-6 py-3 w-fit gap-2 hidden sm:flex justify-between h-fit items-center text-nowrap xl:mb-24 xl:mt-0 mt-7 font-medium
+}
+section#safe .section-images{
+    @apply h-[590px] sm:h-[35rem] xl:h-[43.75rem] mt-6 sm:mt-2 relative xl:top-0 sm:-top-[3.3rem] grid-rows-7 sm:grid-rows-6
+}
+section#safe .section-images .safe-1{
+    @apply col-span-2 sm:col-span-3 row-span-2 xl:row-span-3 col-start-3 sm:col-start-3 row-start-3 xl:row-start-1 xl:col-start-1 bg-set bg-safe-1
+}
+section#safe .section-images .safe-2{
+    @apply col-span-2 sm:col-span-3 xl:col-span-2 row-span-3 sm:row-span-5 xl:row-span-4 sm:col-start-6 xl:col-start-4 bg-set bg-safe-2 sm:row-start-1 row-start-4
+}
+section#safe .section-images .safe-3{
+    @apply col-span-3 xl:col-span-4 row-span-2 xl:row-span-4 sm:col-start-2 sm:row-start-5 xl:row-start-5 xl:col-start-2 bg-set bg-safe-3
+}
+
+section#package {
+    @apply max-w-[120rem] px-4 sm:pe-0 sm:px-[3.75rem] 2xl:px-[11.25rem] pb-8 xl:pb-20 xl:pt-[4.5rem] relative xl:top-0 sm:-top-2.5 sm:mt-0 mt-6 w-screen
+}
+section#package h2{
+    @apply col-span-6 row-span-1
+}
+section#package .card-grid{
+    @apply flex sm:flex-row flex-col gap-6 sm:gap-10 mt-5 sm:mt-8 xl:mt-10 overflow-x-auto
+}
+section#package .card-grid .card{
+    @apply border border-black border-opacity-5 rounded-3xl p-6 xl:p-10 sm:w-[500px] sm:min-w-[410px]
+}
+section#package .card-grid .card:last-of-type{
+    @apply sm:me-[3.75rem]
+}
+section#package .card-grid .card .best-choice{
+    @apply flex text-body-medium text-white rounded-lg bg-gradient-to-t from-black  to-[#525252] ps-[9px] pe-[12px] py-1 ms-5 mb-1.5 font-medium
+}
+section#package .card-grid .card .price{
+    @apply text-[26px] sm:text-[33px] xl:text-[40px]
+}
+section#package .card-grid .card .price span{
+    @apply text-[40px] sm:text-[47px] xl:text-[60px]
+}
+
+section#fakeReal{
+    @apply main-container pt-6 sm:pt-20 pb-7 sm:pb-[3.8rem] xl:py-20 relative
+}
+section#fakeReal h2{
+    @apply flex justify-between
+}
+section#fakeReal .fake-grid{
+    @apply grid grid-cols-4 sm:grid-cols-8 xl:grid-cols-12 grid-rows-6 sm:grid-rows-6 xl:grid-rows-8 gap-4 sm:gap-5 xl:gap-10 mt-4 sm:mt-7 xl:mt-10 h-[400px] sm:h-[43.75rem]
+}
+section#fakeReal .fake-grid.mobile{
+    @apply grid sm:hidden
+}
+section#fakeReal .fake-grid .fake-1{
+    @apply col-span-3 row-span-3 sm:row-span-2 row-start-4 sm:row-start-3 xl:row-start-1 xl:row-span-3 sm:col-start-1 col-start-2 bg-fake-1 bg-set
+}
+section#fakeReal .fake-grid .fake-2{
+    @apply col-span-2 xl:col-span-3 row-span-2 xl:row-span-5 col-start-1 row-start-2 sm:row-start-5 xl:row-start-4 bg-fake-2 bg-set
+}
+section#fakeReal .fake-grid .fake-3{
+    @apply col-span-2 row-span-2 xl:row-span-5 col-start-3 sm:col-start-2 xl:col-start-4 row-start-1 xl:row-start-2 bg-set bg-fake-3
+}
+section#fakeReal .fake-grid .fake-4{
+    @apply col-span-3 sm:col-span-2 xl:col-span-3 row-span-3 sm:row-span-2 xl:row-span-5 sm:col-start-6 xl:col-start-8 row-start-1 bg-set bg-fake-4
+}
+section#fakeReal .fake-grid .fake-5{
+    @apply col-span-2 row-span-2 xl:row-span-5 sm:col-start-7 xl:col-start-11 row-start-5 sm:row-start-3 xl:row-start-1 bg-set bg-fake-5
+}
+section#fakeReal .fake-grid .fake-6{
+    @apply col-span-2 sm:col-span-3 xl:col-span-4 row-span-3 sm:row-span-2 xl:row-span-3 col-start-3 sm:col-start-6 xl:col-start-9 row-start-4 sm:row-start-5 bg-set bg-fake-6
+}
+/*all*/
+section .section-text{
+    @apply col-span-6 grid grid-cols-1 sm:grid-cols-6 [grid-template-rows:auto_auto_auto]
+}
+section .section-text .points{
+    @apply grid gap-y-4 sm:gap-y-3 xl:gap-y-4 mx-3
+}
+section .section-text .points .point{
+    @apply flex items-center gap-3 xl:gap-4
+}
+section .section-text .points .point span{
+    @apply font-medium
+}
+section .section-text .points .point img{
+    @apply w-5 h-5 sm:w-[22px] sm:h-[22px] xl:w-7 xl:h-7
+}
+h2, .vs{
+    @apply text-[44px]/[54px] sm:text-[72px]/[82px] 2xl:text-[6rem]/[6.75rem] text-nowrap
+}
+section h3{
+    @apply text-base/[26px] sm:text-[20px]/[30px] 2xl:text-2xl/[34px] font-bold
+}
+section .section-images{
+    @apply col-span-5 col-start-8 grid grid-cols-4 sm:grid-cols-8 xl:grid-cols-5 grid-rows-6 xl:grid-rows-8 gap-4 sm:gap-5 xl:gap-10 xl:max-h-none sm:max-h-[560px]
+}
+section .section-images{
+    @apply w-full object-cover sm:h-[35rem] xl:h-[48.75rem]
+}
+section .section-images.flip{
+    @apply col-start-1
+}
+section .section-text.flip{
+    @apply col-start-7
+}
+
+
+/*texts*/
+.text-body-medium{
+    @apply text-[13px]/[20px] sm:text-sm/[22px] 2xl:text-lg/7
+}
+.text-body-large{
+    @apply text-base/[26px] sm:text-2xl/[34px]
+}
+
+#header{
+    @apply fixed top-0 left-0 w-full text-body-medium z-[9999] flex justify-center
+}
+#header .header-content{
+    @apply max-w-[120rem] flex items-center px-5 sm:px-7 py-3 sm:py-5 w-full
+}
+.logo{
+    @apply w-[42px] h-[42px]
+}
+#header ul{
+    @apply flex gap-[62px] ms-5 2xl:ms-20 3xl:ms-[11.5vw]
+}
+ul.menu{
+    @apply flex gap-[62px] ms-5 2xl:ms-20 3xl:ms-[11.5vw]
+}
+#header ul{
+    @apply 2xl:flex hidden
+}
+#header .buttons{
+    @apply ms-auto flex gap-2
+}
+#header .buttons .lang{
+    @apply flex ps-3 pe-3 sm:pe-5 items-center relative
+}
+
+#langChoice{
+    @apply absolute -left-[7.6rem] top-full w-[250px] bg-white rounded-xl shadow-xl
+}
+#langChoice .language{
+    @apply px-5 py-3 flex items-center border-b border-black border-opacity-5
+}
+#langChoice .language:last-of-type{
+    @apply border-b-0
+}
+
+
+section#preview{
+    @apply w-screen h-screen bg-main-preview bg-cover text-white max-h-[782px] sm:max-h-[45rem] xl:max-h-[63rem] pt-[12rem] xl:pt-[14.2rem] flex justify-center
+}
+section#preview p  br{
+    @apply hidden xl:inline
+}
+section#preview h1{
+    @apply text-[64px]/[74px] sm:text-[96px]/[106px] 2xl:text-[190px]/[180px]
+}
+section#preview p{
+    @apply text-body-medium pt-3 pb-5 xl:pt-5 xl:pb-10 tracking-wide
+}
+section#preview .arrow{
+    @apply absolute left-0 bottom-7 w-full hidden xl:flex justify-center
+}
+
+#formModal{
+    @apply fixed w-screen h-screen top-0 right-0 flex justify-end items-center z-[99999]
+}
+
+.open-form-container{
+    @apply hidden fixed h-full -right-28 top-0 sm:flex items-center justify-end z-50
+}
+.open-form{
+    @apply transform -rotate-90 text-body-medium rounded-br-none rounded-bl-none py-5 px-20 relative xl:-right-1 right-0
+}
+.formkit-input{
+    @apply w-full bg-black bg-opacity-5 px-5 py-3 rounded-xl text-body-medium
+}
+.formkit-input:focus{
+    @apply border border-white outline-none
+}
+.formkit-messages{
+    @apply m-0 text-body-medium text-red-600
+}
+.number:after{
+    @apply text-body-medium 2xl:pb-0 pb-0.5
+}
+#footer .formkit-messages{
+    @apply m-0 absolute -top-12 right-0 bg-white py-3 px-5 rounded-lg shadow-lg text-body-medium text-black
+}
+#footer .formkit-messages::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 1.5rem;
+    border-width: 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+#footer .formkit-messages::before {
+    content: '';
+    position: absolute;
+    top: 135%;
+    right: 1.5rem;
+    background-image: url("/images/icons/warn.svg");
+    height: 17px;
+    width: 17px;
+    border-radius: 1000px;
+}
+
+.number .formkit-input{
+    @apply ps-24 font-medium
+}
+
+.dialog {
+    @apply bg-transparent mx-auto;
+}
+
+.dialog .dialog-backdrop{
+    @apply fixed top-0 left-0 bg-black bg-opacity-50 w-screen h-screen
+}
+.dialog .dialog-content{
+    @apply relative rounded-3xl bg-white h-full p-7 xl:p-10 max-w-[31.25rem] sm:w-[500px] w-[95vw]
+}
+
+
+#footer {
+    @apply pt-7 sm:pt-14 xl:pt-[7.7rem] bg-footer-bg bg-cover relative z-[1] pb-9
+}
+#footer ul.menu{
+    @apply  xl:flex hidden
+}
+#footer .footer-content{
+    @apply main-container
+}
+#footer .formkit-form{
+    @apply flex items-center gap-4 sm:gap-10 mt-5 sm:mt-8 relative pb-10 sm:pb-40 sm:flex-row flex-col
+}
+#footer .formkit-outer{
+    @apply m-0
+}
+#footer .formkit-input:not(.formkit-input[type="submit"]):not(.formkit-input[type="checkbox"]){
+    @apply bg-[#0E0E0E] xl:w-[360px] text-white
+}
+#footer .formkit-outer[data-type='checkbox']{
+    @apply sm:absolute sm:top-[5.3rem] xl:top-[6.5rem] text-white left-0
+}
+#footer .button-footer{
+    @apply bg-white rounded-xl xl:static sm:absolute xl:top-0 top-[4.6rem] xl:right-0 right-0
+}
+#footer .formkit-input[type="submit"]{
+    @apply xl:relative xl:w-[220px] sm:w-[300px] w-[90vw]
+}
+#footer input[type='checkbox']:after,#footer input[type='checkbox']:before{
+    @apply sm:-top-2
+}
+#footer .number:after{
+    @apply text-white w-36 pb-0.5
+}
+#footer .number:before{
+    @apply w-16
+}
+#footer .formkit-outer.checkbox .formkit-messages::before, #footer .formkit-outer.checkbox .formkit-messages::after{
+    @apply hidden
+}
+#footer .formkit-outer.checkbox .formkit-messages{
+    @apply static bg-transparent p-0
+}
+#footer .formkit-form:nth-child(1) {
+    @apply border-red-600
+}
+
+#mobileMenu{
+    @apply absolute h-screen w-screen bg-white z-[100000] p-7 xl:hidden
+}
+#mobileMenu ul{
+    @apply pt-[18vh] flex flex-col gap-7
+}
+#mobileMenu ul li{
+    @apply text-[24px]/[34px] text-center
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+    opacity: 1;
+}
+
+.fade-stagger-enter-active {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-stagger-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.fade-stagger-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+
 

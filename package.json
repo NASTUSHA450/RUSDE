@@ -18,8 +18,13 @@
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@pinia/nuxt": "^0.11.0",
     "formkit": "^1.6.9",
+    "maska": "^3.1.1",
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vueuse/core": "^13.1.0",
+    "@vueuse/nuxt": "^13.1.0"
   }
 }

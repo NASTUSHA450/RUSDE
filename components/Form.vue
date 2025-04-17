@@ -1,5 +1,8 @@
 <template>
   <FormKit type="form" @submit="handleSubmit" :actions="false">
+    <div class="toast">
+      <FormKitMessages />
+    </div>
     <FormKit
         type="text"
         name="name"
@@ -8,7 +11,7 @@
         placeholder="Имя"
         validation-visibility="submit"
         :classes="{
-            outer: 'mt-10 mb-4',
+            outer: 'mt-4 sm:mt-7 xl:mt-10 mb-4 relative xl:w-auto w-full',
           }"
         :validation-messages="{
               required: 'Имя обязательно',
@@ -18,11 +21,13 @@
     <FormKit
         type="text"
         placeholder="Номер телефона"
-        v-maska="'+7 (###) ###-##-##'"
-        :validation="[['required'], ['matches', /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/]]"
+        :validation="[
+          ['required'],
+        ]"
+        v-maska="'### ### ####'"
         validation-visibility="submit"
         :classes="{
-            outer: 'mb-10',
+            outer: 'mb-5 sm:mb-7 xl:mb-10 relative  xl:w-auto w-full',
             wrapper: 'number relative'
           }"
         :validation-messages="{
@@ -35,35 +40,45 @@
         name="acceptTerms"
         validation="required"
         :classes="{
+            outer: 'relative checkbox',
             wrapper: 'flex',
             input: 'relative',
-            inner: isFooter ? 'rounded-full mr-4 h-7 w-7 ' :'rounded-full mr-4 h-7 w-7 mt-2 ml-0.5'
+            inner: isFooter ? 'rounded-full mr-4 w-5 h-5 sm:w-[22px] sm:h-[22px] xl:w-7 xl:h-7' :'rounded-full mr-4 w-5 h-5 sm:w-[22px] sm:h-[22px] xl:w-7 xl:h-7 sm:mt-2 ml-0.5'
           }"
         :validation-messages="{
               required: 'Примите условия политики конфиденциальности'
            }"
     >
       <template #label>
-        <div class="text-body-medium">
+        <div class="text-body-medium sm:mt-0 xs:mt-1">
           Я соглашаюсь с
-          <a href="#" class="underline underline-offset-2"> политикой обработки <br v-if="!isFooter"> персональных данных </a>
+          <a href="#" class="underline underline-offset-2"> политикой обработки <br v-if="!isFooter" class="hidden sm:inline"> персональных данных </a>
         </div>
       </template>
     </FormKit>
     <FormKit type="submit" :label="isFooter? 'Отправить заявку':'Отправить'" :classes="{
-            input: isFooter ? 'button-white':'button-black',
-            wrapper: isFooter ? 'bg-white rounded-lg w-[230px]':'bg-black rounded-lg mt-4'
+            input: isFooter ? 'button-white ':'button-black',
+            wrapper: isFooter ? 'button-footer':'bg-black rounded-lg mt-4'
           }"/>
   </FormKit>
 </template>
 <script setup lang="ts">
+const showMessage = ref(true)
+import { FormKitMessages } from '@formkit/vue'
 const props = defineProps({
   currentClass: String,
 })
+const emit = defineEmits<{
+  (e: 'submit', payload: Record<string, any>): void
+}>()
 const handleSubmit = (data: Record<string, any>) => {
-  alert('Форма отправлена!');
-  console.log('Данные формы:', data);
+  emit('submit', data)
 }
 
 const isFooter = props.currentClass === 'footer'
 </script>
+<style scoped>
+.toast {
+  display: none;
+}
+</style>

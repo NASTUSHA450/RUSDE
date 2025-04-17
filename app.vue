@@ -1,11 +1,13 @@
 <template>
-  <Header />
-  <Preview />
-  <FormModal />
-  <div ref="headerMarker" class="header-marker"></div>
-  <Main />
-  <div ref="footerRef">
-    <Footer />
+  <div class="flex flex-col items-center">
+    <Header />
+    <Preview />
+    <FormModal />
+    <div ref="headerMarker" class="header-marker"></div>
+    <Main />
+    <div ref="footerRef" class="w-full">
+      <Footer />
+    </div>
   </div>
 
 </template>
